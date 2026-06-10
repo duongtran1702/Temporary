@@ -45,6 +45,20 @@ public class JwtProvider {
                 .compact();
     }
 
+    // BỔ SUNG TỪ DỰ ÁN TEACHER: Tạo Refresh Token có thời hạn sống dài hơn (được quy định bởi refreshExpiration).
+    public String generateRefreshToken(User user) {
+        long nowMillis = System.currentTimeMillis();
+        Date issuedAtDate = new Date(nowMillis);
+        Date expirationDate = new Date(nowMillis + jwtProperties.getRefreshExpiration());
+
+        return Jwts.builder()
+                .subject(user.getUsername())
+                .expiration(expirationDate)
+                .issuedAt(issuedAtDate)
+                .signWith(key)
+                .compact();
+    }
+
     public boolean validateToken(String token) {
         try {
             // Chỉ cần parse thành công không ném ra Exception nghĩa là:

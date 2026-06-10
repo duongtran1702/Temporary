@@ -13,4 +13,6 @@ public class JwtProperties {
     private String secret;
     private Long expiration;
 
+    // BỔ SUNG TỪ DỰ ÁN TEACHER: Thời gian sống của Refresh Token (được cấu hình bằng ms)
+    private Long refreshExpiration;
 }

@@ -48,7 +48,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 response.setContentType("application/json;charset=UTF-8");
                 response.getWriter().write("{\"error\": \"" + e.getMessage() + "\"}");
-                return; // Dừng filter chain nếu token không hợp lệ
+                return;
             }
         }
         filterChain.doFilter(request, response);

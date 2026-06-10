@@ -46,3 +46,12 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+sourceSets {
+    test {
+        java {
+            exclude 'com/example/library/**'
+        }
+    }
+}
+

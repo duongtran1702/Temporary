@@ -24,10 +24,10 @@ public class User {
     @ManyToMany(fetch = FetchType.EAGER) // Dùng EAGER để khi lấy User lên thì Hibernate tự động lấy luôn danh sách Roles đi kèm
     @JoinTable(
             name = "user_roles", // Tên bảng trung gian trong Database
-            joinColumns = @JoinColumn(name = "user_username"), // Khóa ngoại trỏ về khóa chính của bảng User
+            joinColumns = @JoinColumn(name = "user_id"), // Khóa ngoại trỏ về khóa chính của bảng User
             inverseJoinColumns = @JoinColumn(name = "role_id")  // Khóa ngoại trỏ về khóa chính của bảng Role
     )
-    private Set<Role> roles;
+    private Set<Role> roles=Set.of(new Role(1,"ROLE_USER"));
 
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
